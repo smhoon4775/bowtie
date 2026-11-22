@@ -172,9 +172,18 @@ select.inp{padding-right:4px}
 .add-b{width:28px;height:28px;border-radius:50%;border:1.5px dashed var(--line2);background:var(--panel);color:var(--text3);display:flex;align-items:center;justify-content:center;transition:all .12s;position:relative;z-index:2}
 .add-b:hover{border-style:solid;border-color:var(--accent);color:#fff;background:var(--accent);transform:scale(1.1)}
 .add-b .i{width:15px;height:15px;stroke-width:2.5}
-.add-row{align-self:flex-start;width:var(--tw);height:38px;border:1.5px dashed var(--line2);border-radius:10px;color:var(--text3);font-weight:600;font-size:12.5px;display:flex;align-items:center;justify-content:center;gap:6px;background:color-mix(in srgb,var(--panel) 70%,transparent);transition:all .12s;margin-top:4px}
-.side-R .add-row{align-self:flex-end}
-.add-row:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.add-row{align-self:flex-start;width:var(--tw);height:48px;border:2px dashed var(--threat);border-radius:12px;color:var(--threat);font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--threat-soft);transition:all .12s;margin-top:6px}
+.add-row .i{width:20px;height:20px;padding:3px;border-radius:50%;background:var(--threat);color:#fff;stroke-width:3}
+.add-row:hover{border-style:solid;background:var(--threat);color:#fff;transform:translateY(-1px);box-shadow:var(--shadow-lg)}
+.add-row:hover .i{background:#fff;color:var(--threat)}
+.side-R .add-row{align-self:flex-end;border-color:var(--cons);color:var(--cons);background:var(--cons-soft)}
+.side-R .add-row .i{background:var(--cons)}
+.side-R .add-row:hover{background:var(--cons);color:#fff}
+.side-R .add-row:hover .i{background:#fff;color:var(--cons)}
+.ctools .btn.add-th,.ctools .btn.add-co{height:32px;padding:0 12px 0 9px;font-weight:800;font-size:13px;color:#fff;border:0}
+.ctools .btn.add-th{background:var(--threat)}.ctools .btn.add-co{background:var(--cons)}
+.ctools .btn.add-th:hover{background:var(--threat);filter:brightness(1.1)}.ctools .btn.add-co:hover{background:var(--cons);filter:brightness(1.1)}
+.ctools .btn.add-th .i,.ctools .btn.add-co .i{stroke-width:3}
 .center{display:flex;flex-direction:column;align-items:center;padding:0 78px;flex:none;gap:36px}
 
 /* ---------- 노드 공통 ---------- */
@@ -437,44 +446,62 @@ select.cin.csel{color:var(--c);font-weight:700;min-width:104px}
 .tv td.empty{text-align:center;padding:40px}
 
 /* ================= 위험 매트릭스 ================= */
-.mv{display:grid;grid-template-columns:minmax(440px,1.1fr) minmax(420px,1fr);gap:16px;padding:18px;align-items:start}
+.mv{padding:18px 20px 40px;display:flex;flex-direction:column;gap:16px;min-width:760px}
+.mv-top{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.mv-top h2{margin:0;font-size:19px;font-weight:800;letter-spacing:-.02em;margin-right:auto}
+.mv-top h2 small{font-size:13px;color:var(--text3);font-weight:600;margin-left:8px}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow)}
-.mv-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
-.mv-head h3{margin:0;font-size:16px;font-weight:800;margin-right:auto}
-.mv-head h3 small{font-size:12px;color:var(--text3);font-weight:700;margin-left:4px}
-.seg{display:inline-flex;background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:2px;gap:2px}
-.seg button{height:28px;padding:0 11px;border-radius:7px;font-size:12.5px;font-weight:600;color:var(--text2)}
-.seg button.on{background:var(--panel);color:var(--text);box-shadow:var(--shadow)}
-[data-theme="dark"] .seg button.on{background:var(--line)}
-.mx-wrap{display:flex;gap:6px}
-.mx{flex:1;display:grid;grid-template-columns:86px repeat(var(--n),minmax(0,1fr));gap:4px}
-.mx-corner{display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-end;gap:2px;font-size:11px;font-weight:800;color:var(--text2);padding:4px 6px 0 0;text-align:right}
-.mx-rl,.mx-cl{display:flex;flex-direction:column;justify-content:center;font-size:11px;color:var(--text3);line-height:1.3}
-.mx-rl{padding-right:6px;text-align:right;align-items:flex-end}
-.mx-cl{align-items:center;text-align:center;padding-top:4px}
-.mx-rl b,.mx-cl b{font-size:13px;color:var(--text)}
-.mx-c{min-height:74px;border-radius:9px;background:var(--cs);border:1px solid color-mix(in srgb,var(--c) 45%,transparent);position:relative;padding:20px 4px 4px;display:flex}
-.mx-v{position:absolute;top:4px;right:7px;font-size:11px;font-weight:800;color:var(--c)}
+.mv-head{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.mv-head h3{margin:0;font-size:16px;font-weight:800}
+.mx-pair{display:grid;grid-template-columns:minmax(0,1fr) 28px minmax(0,1fr);align-items:stretch;gap:6px}
+.mx-arrow{display:flex;align-items:center;justify-content:center;color:var(--text3)}
+.mx-arrow .i{width:26px;height:26px}
+.mx-card{position:relative;padding:14px 16px 16px}
+.mxc-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.mxc-badge{font-size:14.5px;font-weight:800;padding:5px 12px;border-radius:9px;background:var(--panel2);border:1px solid var(--line)}
+.mx-card.after .mxc-badge{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.mxc-sum{font-size:13px;color:var(--text2)}
+.mxc-sum b{color:#e03131}
+.mx{display:grid;grid-template-columns:78px repeat(var(--n),minmax(0,1fr));gap:5px}
+.mx-rl,.mx-cl{display:flex;flex-direction:column;justify-content:center;font-size:12px;color:var(--text3);line-height:1.3}
+.mx-rl{padding-right:8px;text-align:right;align-items:flex-end}
+.mx-cl{align-items:center;text-align:center;padding-top:6px}
+.mx-rl b,.mx-cl b{font-size:16px;color:var(--text);font-weight:800}
+.mx-corner{display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-end;gap:2px;font-size:12px;font-weight:800;color:var(--text2);padding:6px 8px 0 0;text-align:right}
+.mx-c{min-height:64px;border-radius:10px;background:var(--cs);border:1px solid var(--cb);position:relative;padding:26px 6px 6px;display:flex;flex-direction:column}
+.mx-c.has{background:color-mix(in srgb,var(--c) 26%,var(--panel))}
+.mx-v{position:absolute;top:5px;right:8px;font-size:14px;font-weight:800;color:var(--c)}
 [data-theme="dark"] .mx-v{filter:brightness(1.3)}
-.mx-chips{display:flex;flex-wrap:wrap;gap:3px;align-content:flex-start;width:100%}
-.mx-chip{display:inline-flex;align-items:center;gap:4px;max-width:100%;padding:2px 6px;border-radius:6px;background:var(--panel);border:1px solid var(--line2);font-size:10.5px;font-weight:800;color:var(--cons);box-shadow:var(--shadow)}
-.mx-chip span{font-weight:600;color:var(--text2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:90px}
-.mx-chip.on{border-color:var(--accent);box-shadow:0 0 0 2px var(--ring)}
-.mx-lg{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:14px;font-size:12px;color:var(--text2)}
+.mx-chips{display:flex;flex-direction:column;gap:5px;width:100%}
+.mx-chip{display:flex;flex-direction:column;align-items:flex-start;gap:1px;width:100%;padding:6px 8px;border-radius:8px;background:var(--panel);border:1.5px solid var(--line2);text-align:left;box-shadow:var(--shadow);transition:border-color .1s,box-shadow .1s}
+.mx-chip b{font-size:12px;font-weight:800;color:var(--cons)}
+.mx-chip span{font-size:13px;font-weight:700;color:var(--text);line-height:1.35;word-break:keep-all;overflow-wrap:anywhere}
+.mx-chip em{font-style:normal;font-size:11.5px;font-weight:700;color:var(--text3)}
+.mx-chip.on,.mx-chip.hl{border-color:var(--accent);box-shadow:0 0 0 3px var(--ring)}
+.mx-empty{position:absolute;left:96px;right:20px;top:50%;transform:translateY(-50%);text-align:center;font-size:13px;font-weight:600;color:var(--text2);background:var(--panel);border:1px dashed var(--line2);border-radius:10px;padding:12px;pointer-events:none}
+.mx-lg{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--text2)}
 .mx-lg span{display:inline-flex;align-items:center;gap:6px}
-.mx-lg i{width:10px;height:10px;border-radius:3px}
-table.rt{width:100%;border-collapse:collapse;font-size:12.5px}
-.rt th{text-align:left;font-size:11px;font-weight:800;color:var(--text3);padding:6px 5px;border-bottom:1px solid var(--line);white-space:nowrap}
-.rt td{padding:7px 5px;border-bottom:1px solid var(--line);vertical-align:middle}
-.rt td.num{font-size:11px;font-weight:800;color:var(--text3)}
-.rt tr.on td{background:var(--accent-soft)}
-.rt .rsel{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:5px}
-.rt .rsel .inp.sm{min-width:0;width:100%;height:28px;font-size:12px}
-.rt td.rn{min-width:130px}
-.rt td.rc{min-width:150px}
-.rt .sub{font-size:11px;color:var(--text3)}
-.linkish{font-weight:700;text-align:left}
+.mx-lg i{width:11px;height:11px;border-radius:3px}
+.rt-wrap{overflow-x:auto}
+table.rt{width:100%;border-collapse:collapse;font-size:13px}
+.rt th{text-align:left;font-size:12px;font-weight:800;color:var(--text2);padding:7px 6px;border-bottom:1px solid var(--line);white-space:nowrap}
+.rt thead tr:first-child th{border-bottom:0;padding-bottom:2px}
+.rt th.grp-b{color:var(--text)}
+.rt th.grp-a{color:var(--accent)}
+.rt td{padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:middle}
+.rt td.num{font-size:12px;font-weight:800;color:var(--text3)}
+.rt tr.on td,.rt tr.hl td{background:var(--accent-soft)}
+.rt td.rn{min-width:160px}
+.rt .inp.sm{min-width:118px;height:32px;font-size:12.5px}
+.rt .sub{font-size:11.5px;color:var(--text3)}
+.dl{font-size:12.5px;font-weight:800;white-space:nowrap}
+.dl.down{color:#2f9e44}.dl.up{color:#e03131}.dl.same,.dl.none{color:var(--text3);font-weight:600}
+.linkish{font-weight:700;text-align:left;font-size:13.5px}
 .linkish:hover{color:var(--accent);text-decoration:underline}
+@media (max-width:1250px){
+  .mx-pair{grid-template-columns:minmax(0,1fr)}
+  .mx-arrow{transform:rotate(90deg);height:24px}
+}
 
 /* ================= 모달 ================= */
 .mwrap{position:fixed;inset:0;z-index:80;background:rgba(15,20,28,.38);backdrop-filter:blur(3px);display:flex;align-items:flex-start;justify-content:center;padding:6vh 16px 16px;opacity:0;transition:opacity .15s}
@@ -571,7 +598,7 @@ table.keys{width:100%;border-collapse:collapse;font-size:12.5px}
   body.insp-open .insp-backdrop{display:block;position:fixed;inset:var(--topbar) 0 0 0;background:rgba(0,0,0,.2);z-index:9}
   .tb-right .tdiv,.tb-right [data-cmd="text"]{display:none}
   .bname{display:none}
-  .mv{grid-template-columns:1fr}
+  .mv{min-width:0;padding:12px}
   .tx,.help,.set{grid-template-columns:1fr}
   .set-nav{flex-direction:row;flex-wrap:wrap;border-right:0;border-bottom:1px solid var(--line);padding:0 0 10px}
   .ctools.tl .sbox .inp{width:120px}
@@ -631,8 +658,8 @@ table.keys{width:100%;border-collapse:collapse;font-size:12.5px}
     <div id="canvas" class="canvas view on" data-view="diagram">
       <div id="stage" class="stage"></div>
       <div class="ctools tl">
-        <button class="btn" data-act="addThreat" title="위협 추가 (T)"><i data-ic="plus"></i><span>위협</span></button>
-        <button class="btn" data-act="addCons" title="결과 추가 (C)"><i data-ic="plus"></i><span>결과</span></button>
+        <button class="btn add-th" data-act="addThreat" title="위협 추가 (T) — 기본 장벽 1개가 함께 생깁니다"><i data-ic="plus"></i><span>위협 추가</span></button>
+        <button class="btn add-co" data-act="addCons" title="결과 추가 (C) — 기본 장벽 1개가 함께 생깁니다"><i data-ic="plus"></i><span>결과 추가</span></button>
         <div class="sbox"><i data-ic="search"></i><input id="search" class="inp" placeholder="찾기 ( / )" autocomplete="off"><span id="searchCnt" class="scnt"></span></div>
       </div>
       <div class="ctools bl">
@@ -681,8 +708,10 @@ const TEMPLATES = [
 정상사건: 정상 사건(Top Event)을 입력하세요
 
 위협: 위협 1
+- 장벽 1
 
-결과: 결과 1`
+결과: 결과 1
+- 장벽 1`
   },
   {
     key: 'tank', icon: 'flame', title: '인화성 액체 저장탱크 화재·폭발',
@@ -1564,8 +1593,8 @@ function addNode(kind, o = {}) {
   if (kind === 'efb') { parent = IDX[o.ef] && IDX[o.ef].obj; if (!parent) return null; }
   let item;
   mutate(() => {
-    if (kind === 'threat') { item = mkThreat(o.name || '새 위협'); P.threats.splice(o.at ?? P.threats.length, 0, item); }
-    else if (kind === 'cons') { item = mkCons(o.name || '새 결과'); P.cons.splice(o.at ?? P.cons.length, 0, item); }
+    if (kind === 'threat') { item = mkThreat(o.name || '새 위협'); item.barriers.push(mkBarrier('새 장벽')); P.threats.splice(o.at ?? P.threats.length, 0, item); }
+    else if (kind === 'cons') { item = mkCons(o.name || '새 결과'); item.barriers.push(mkBarrier('새 장벽')); P.cons.splice(o.at ?? P.cons.length, 0, item); }
     else if (kind === 'barrier') { item = mkBarrier(o.name || '새 장벽'); parent.barriers.splice(o.at ?? parent.barriers.length, 0, item); }
     else if (kind === 'ef') { item = mkEF(o.name || '새 확대요인'); parent.efs.splice(o.at ?? parent.efs.length, 0, item); }
     else if (kind === 'efb') { item = mkBarrier(o.name || '새 대책'); parent.barriers.splice(o.at ?? parent.barriers.length, 0, item); }
@@ -1574,7 +1603,8 @@ function addNode(kind, o = {}) {
   SEL = item.id;
   if (VIEW !== 'diagram') { renderAll(); return item; }
   renderDiagram(); renderInspector(); updateHint();
-  if (!o.noEdit) startEdit(item.id, { isNew: true }); else ensureVisible(nodeEl(item.id));
+  const then = (kind === 'threat' || kind === 'cons') && item.barriers[0] ? item.barriers[0].id : null;
+  if (!o.noEdit) startEdit(item.id, { isNew: true, then }); else ensureVisible(nodeEl(item.id));
   return item;
 }
 function addSibling(id) {
@@ -1647,7 +1677,7 @@ function startEdit(id, o = {}) {
   const lab = node.querySelector(':scope > .label'); if (!lab) return;
   if (SEL !== id) select(id);
   const m = IDX[id];
-  editing = { id, kind: m.kind, isNew: !!o.isNew, node, lab, orig: m.obj.name, sug: [], si: -1, picked: null };
+  editing = { id, kind: m.kind, isNew: !!o.isNew, fresh: !!o.fresh, then: o.then || null, node, lab, orig: m.obj.name, sug: [], si: -1, picked: null };
   node.draggable = false; node.classList.add('editing');
   lab.textContent = m.obj.name;
   lab.contentEditable = 'true'; lab.spellcheck = false;
@@ -1672,7 +1702,7 @@ function onEditKey(e) {
   if ((e.ctrlKey || e.metaKey) && ['KeyZ', 'KeyY', 'KeyD'].includes(e.code)) e.stopPropagation();
 }
 function onEditInput() { if (!editing) return; updateSuggest(); drawWires(); }
-function onEditBlur(e) { if (editing && e.target === editing.lab) finishEdit(true); }
+function onEditBlur(e) { if (editing && e.target === editing.lab) finishEdit(true, { blur: true }); }
 function onEditPaste(e) {
   e.preventDefault();
   const t = (e.clipboardData || window.clipboardData).getData('text').replace(/\s+/g, ' ');
@@ -1705,6 +1735,7 @@ function finishEdit(save, o = {}) {
   else { lab.textContent = name; node.title = name; drawWires(); }
   renderInspector(); updateHint();
   if (o.next) addSibling(e.id);
+  else if (e.then && !o.blur && IDX[e.then]) startEdit(e.then, { fresh: true });
 }
 
 /* ---------- 자동완성 ---------- */
@@ -1723,10 +1754,10 @@ function suggestPool(kind) {
 function updateSuggest() {
   const e = editing; if (!e) return;
   if (e.kind === 'hazard' || e.kind === 'top') { e.sug = []; paintSuggest(); return; }
-  let q = e.lab.textContent.trim(); if (e.isNew && q === e.orig) q = '';
+  let q = e.lab.textContent.trim(); if ((e.isNew || e.fresh) && q === e.orig) q = '';
   const ql = normName(q);
   const pool = suggestPool(e.kind).filter(x => x.name !== e.orig);
-  const list = ql ? pool.filter(x => normName(x.name).includes(ql) && x.name !== q) : (e.isNew ? pool : []);
+  const list = ql ? pool.filter(x => normName(x.name).includes(ql) && x.name !== q) : ((e.isNew || e.fresh) ? pool : []);
   e.sug = list.slice(0, 8); e.si = -1; e.q = q; paintSuggest();
 }
 function paintSuggest() {
@@ -2475,56 +2506,90 @@ function bindTable() {
 }
 
 /* ---------- 위험 매트릭스 ---------- */
-let MX = 'now';
-function renderMatrix() {
-  const box = $('#matrixView'); if (!box) return;
-  const c = cfg(), mt = c.matrix, n = mt.size;
-  const fs = MX === 'now' ? ['s', 'l'] : ['s2', 'l2'];
+function matrixCard(mode) {
+  const mt = cfg().matrix, n = mt.size, after = mode === 'after';
+  const fs = after ? ['s2', 'l2'] : ['s', 'l'];
   const at = {};
   P.cons.forEach(x => { const s = +x[fs[0]], l = +x[fs[1]]; if (s && l) (at[`${s}-${l}`] = at[`${s}-${l}`] || []).push(x); });
+  const rated = P.cons.filter(x => +x[fs[0]] && +x[fs[1]]);
+  const high = rated.filter(x => riskOf(+x[fs[0]], +x[fs[1]]).i >= mt.levels.length - 2).length;
   let grid = '';
   for (let l = n; l >= 1; l--) {
     grid += `<div class="mx-rl"><b>${l}</b><span>${esc(mt.lik[l - 1])}</span></div>`;
     for (let s = 1; s <= n; s++) {
-      const r = riskOf(s, l);
-      grid += `<div class="mx-c" style="--c:${r.color};--cs:${soft(r.color, .2)}" title="심각도 ${s} × 가능성 ${l} = ${r.v} (${esc(r.name)})"><span class="mx-v">${r.v}</span><div class="mx-chips">${(at[`${s}-${l}`] || []).map(x => `<button class="mx-chip${SEL === x.id ? ' on' : ''}" data-msel="${x.id}" title="${esc(x.name)}">${IDX[x.id].num}<span>${esc(x.name)}</span></button>`).join('')}</div></div>`;
+      const r = riskOf(s, l), list = at[`${s}-${l}`] || [];
+      grid += `<div class="mx-c${list.length ? ' has' : ''}" style="--c:${r.color};--cs:${soft(r.color, .16)};--cb:${soft(r.color, .45)}" title="심각도 ${s} × 가능성 ${l} = ${r.v} (${esc(r.name)})"><span class="mx-v">${r.v}</span>
+        <div class="mx-chips">${list.map(x => {
+          const rb = after ? riskOf(x.s, x.l) : null, ra = after ? null : riskOf(x.s2, x.l2);
+          const tag = after ? (rb ? `<em>전 ${rb.v}</em>` : '') : (ra ? `<em>후 ${ra.v}</em>` : '');
+          return `<button class="mx-chip${SEL === x.id ? ' on' : ''}" data-msel="${x.id}" data-cid="${x.id}" title="${esc(x.name)}"><b>${IDX[x.id].num}</b><span>${esc(x.name)}</span>${tag}</button>`;
+        }).join('')}</div></div>`;
     }
   }
-  grid += '<div class="mx-corner"><span>가능성 ↑</span><span>심각도 →</span></div>' + Array.from({ length: n }, (_, i) => `<div class="mx-cl"><b>${i + 1}</b><span>${esc(mt.sev[i])}</span></div>`).join('');
-  const sel = (x, f, labels) => `<select class="inp sm" data-mf="${f}" data-mid="${x.id}" title="${f.startsWith('s') ? '심각도' : '가능성'}"><option value="0">${f.startsWith('s') ? '심각도' : '가능성'}</option>${labels.map((t, i) => `<option value="${i + 1}" ${+x[f] === i + 1 ? 'selected' : ''}>${i + 1} ${esc(t)}</option>`).join('')}</select>`;
+  grid += `<div class="mx-corner"><span>가능성 ↑</span><span>심각도 →</span></div>` + Array.from({ length: n }, (_, i) => `<div class="mx-cl"><b>${i + 1}</b><span>${esc(mt.sev[i])}</span></div>`).join('');
+  return `<div class="card mx-card ${mode}">
+    <div class="mxc-head"><span class="mxc-badge">${after ? '개선 후' : '개선 전 (현재)'}</span><span class="mxc-sum">평가 ${rated.length}/${P.cons.length} · 높음 이상 <b>${high}</b></span></div>
+    <div class="mx" style="--n:${n}">${grid}</div>
+    ${!rated.length && P.cons.length ? `<div class="mx-empty">${after ? '아래 표의 [개선 후] 칸에 심각도·가능성을 넣으면 여기에 표시됩니다' : '아래 표의 [개선 전] 칸에 심각도·가능성을 넣으면 여기에 표시됩니다'}</div>` : ''}
+  </div>`;
+}
+function renderMatrix() {
+  const box = $('#matrixView'); if (!box) return;
+  const c = cfg(), mt = c.matrix, n = mt.size;
+  const sel = (x, f, labels) => `<select class="inp sm" data-mf="${f}" data-mid="${x.id}"><option value="0">선택</option>${labels.map((t, i) => `<option value="${i + 1}" ${+x[f] === i + 1 ? 'selected' : ''}>${i + 1} · ${esc(t)}</option>`).join('')}</select>`;
   const chip = r => r ? `<span class="rchip" style="--c:${r.color};--cs:${soft(r.color, .18)}">${r.v} · ${esc(r.name)}</span>` : '<span class="rchip none">-</span>';
-  const unrated = P.cons.filter(x => !(+x[fs[0]] && +x[fs[1]]));
+  const diff = x => {
+    const a = riskOf(x.s, x.l), b = riskOf(x.s2, x.l2);
+    if (!a || !b) return '<span class="dl none">-</span>';
+    const d = b.v - a.v;
+    return d < 0 ? `<span class="dl down">▼ ${-d}</span>` : d > 0 ? `<span class="dl up">▲ ${d}</span>` : '<span class="dl same">변화 없음</span>';
+  };
   box.innerHTML = `<div class="mv">
-    <div class="card mv-l">
-      <div class="mv-head"><h3>위험 매트릭스 <small>${n}×${n}</small></h3>
-        <div class="seg"><button data-mx="now" class="${MX === 'now' ? 'on' : ''}">현재 위험</button><button data-mx="after" class="${MX === 'after' ? 'on' : ''}">개선 후 위험</button></div>
-        <button class="btn sm" data-mxa="settings">${ic('sliders')}매트릭스 설정</button></div>
-      <div class="mx-wrap"><div class="mx" style="--n:${n}">${grid}</div></div>
+    <div class="mv-top">
+      <h2>위험 매트릭스 <small>${n}×${n} · 위험도 = 심각도 × 가능성</small></h2>
       <div class="mx-lg">${mt.levels.map((lv, i) => `<span><i style="background:${lv.color}"></i><b>${esc(lv.name)}</b> ${levelRange(i)}</span>`).join('')}</div>
-      ${unrated.length ? `<div class="hintline">아직 평가하지 않은 결과: ${unrated.map(x => `${IDX[x.id].num} ${esc(x.name)}`).join(', ')}</div>` : ''}
+      <button class="btn sm" data-mxa="settings">${ic('sliders')}매트릭스 설정</button>
     </div>
-    <div class="card mv-r">
-      <div class="mv-head"><h3>결과별 위험도</h3></div>
-      <table class="rt"><thead><tr><th>번호</th><th>결과</th><th>현재 (심각도 · 가능성)</th><th>개선 후 (심각도 · 가능성)</th></tr></thead><tbody>
-      ${P.cons.map(x => `<tr class="${SEL === x.id ? 'on' : ''}"><td class="num">${IDX[x.id].num}</td><td class="rn"><button class="linkish" data-msel="${x.id}">${esc(x.name)}</button><div class="sub">완화 장벽 ${x.barriers.length}개</div></td>
-        <td class="rc"><div class="rsel">${sel(x, 's', mt.sev)}${sel(x, 'l', mt.lik)}</div>${chip(riskOf(x.s, x.l))}</td>
-        <td class="rc"><div class="rsel">${sel(x, 's2', mt.sev)}${sel(x, 'l2', mt.lik)}</div>${chip(riskOf(x.s2, x.l2))}</td></tr>`).join('') || `<tr><td colspan="4" class="empty">결과가 없습니다</td></tr>`}
-      </tbody></table>
-      <div class="hintline">위험도 = 심각도 × 가능성. 등급 구간과 이름은 [매트릭스 설정]에서 바꿀 수 있습니다.</div>
+    <div class="mx-pair">${matrixCard('now')}<div class="mx-arrow">${ic('chev-r')}</div>${matrixCard('after')}</div>
+    <div class="card rt-card">
+      <div class="mv-head"><h3>결과별 위험도 입력</h3><span class="hintline" style="margin:0">칸을 고르면 위 매트릭스에 바로 반영됩니다</span></div>
+      <div class="rt-wrap"><table class="rt"><thead>
+        <tr><th rowspan="2">번호</th><th rowspan="2">결과</th><th colspan="3" class="grp-b">개선 전 (현재)</th><th colspan="3" class="grp-a">개선 후</th><th rowspan="2">변화</th></tr>
+        <tr><th class="grp-b">심각도</th><th class="grp-b">가능성</th><th class="grp-b">위험도</th><th class="grp-a">심각도</th><th class="grp-a">가능성</th><th class="grp-a">위험도</th></tr></thead><tbody>
+      ${P.cons.map(x => `<tr class="${SEL === x.id ? 'on' : ''}" data-cid="${x.id}"><td class="num">${IDX[x.id].num}</td>
+        <td class="rn"><button class="linkish" data-msel="${x.id}">${esc(x.name)}</button><div class="sub">완화 장벽 ${x.barriers.length}개</div></td>
+        <td>${sel(x, 's', mt.sev)}</td><td>${sel(x, 'l', mt.lik)}</td><td>${chip(riskOf(x.s, x.l))}</td>
+        <td>${sel(x, 's2', mt.sev)}</td><td>${sel(x, 'l2', mt.lik)}</td><td>${chip(riskOf(x.s2, x.l2))}</td>
+        <td>${diff(x)}</td></tr>`).join('') || `<tr><td colspan="9" class="empty">결과가 없습니다. 다이어그램에서 결과를 추가하세요.</td></tr>`}
+      </tbody></table></div>
     </div></div>`;
+  syncMatrixRows();
+}
+function syncMatrixRows() {
+  const grids = $$('#matrixView .mx'); if (!grids.length) return;
+  const n = cfg().matrix.size;
+  const rows = grids.map(g => $$('.mx-c', g));
+  rows.flat().forEach(c => { c.style.minHeight = ''; });
+  for (let r = 0; r < n; r++) {
+    const cells = rows.flatMap(list => list.slice(r * n, (r + 1) * n));
+    const h = Math.max(...cells.map(c => c.offsetHeight));
+    if (h > 0) cells.forEach(c => { c.style.minHeight = h + 'px'; });
+  }
 }
 function bindMatrix() {
   const box = $('#matrixView');
   box.addEventListener('click', e => {
-    const b = e.target.closest('[data-mx]'); if (b) { MX = b.dataset.mx; renderMatrix(); return; }
     const s = e.target.closest('[data-msel]'); if (s) { SEL = s.dataset.msel; renderMatrix(); renderInspector(); return; }
     const a = e.target.closest('[data-mxa]'); if (a) openSettings('matrix');
   });
+  const hl = (id, on) => $$(`#matrixView [data-cid="${cssId(id)}"]`).forEach(x => x.classList.toggle('hl', on));
+  box.addEventListener('mouseover', e => { const c = e.target.closest('[data-cid]'); if (c) hl(c.dataset.cid, true); });
+  box.addEventListener('mouseout', e => { const c = e.target.closest('[data-cid]'); if (c) hl(c.dataset.cid, false); });
   box.addEventListener('change', e => {
     const t = e.target; if (!t.dataset.mf) return;
     const id = t.dataset.mid, f = t.dataset.mf;
     mutate(() => { IDX[id].obj[f] = +t.value; });
-    renderMatrix(); renderInspector();
+    const sc = box.scrollTop; renderMatrix(); box.scrollTop = sc; renderInspector();
   });
 }
 
@@ -3395,7 +3460,7 @@ function init() {
   const settle = () => { drawWires(); fitView(); };
   requestAnimationFrame(settle);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => requestAnimationFrame(settle));
-  window.addEventListener('resize', debounce(() => { if (VIEW === 'diagram') drawWires(); }, 150));
+  window.addEventListener('resize', debounce(() => { if (VIEW === 'diagram') drawWires(); else if (VIEW === 'matrix') syncMatrixRows(); }, 150));
   window.addEventListener('beforeunload', () => { if (saveTimer) saveNow(); });
   window.addEventListener('pagehide', () => { if (saveTimer) saveNow(); });
   if (first) setTimeout(() => toast('예시 보우타이가 열렸습니다. [새로 만들기]로 시작하거나 ? 키로 사용법을 보세요', { ms: 7000 }), 700);
