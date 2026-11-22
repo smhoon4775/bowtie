@@ -98,13 +98,45 @@ select.inp{padding-right:4px}
 .tsw-btn{flex:none;height:100%;display:inline-flex;align-items:center;gap:4px;padding:0 10px 0 9px;border-left:1px solid var(--line);border-radius:0 10px 10px 0;color:var(--text2);font-size:12px;font-weight:800}
 .tsw-btn:hover{background:var(--accent-soft);color:var(--accent)}
 .tsw-btn .i{width:15px;height:15px}
-.tsw-n{min-width:18px;height:18px;padding:0 5px;border-radius:99px;background:var(--panel2);border:1px solid var(--line);display:inline-flex;align-items:center;justify-content:center;font-size:11px}
-.switcher{position:fixed;z-index:75;width:430px;max-width:calc(100vw - 16px);background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-lg);display:none;flex-direction:column;max-height:min(560px,calc(100vh - 80px))}
+.tsw-n{min-width:18px;max-width:120px;height:20px;padding:0 7px;border-radius:99px;background:var(--panel2);border:1px solid var(--line);display:inline-block;line-height:18px;font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tsw-n.isf{background:#fff4e0;border-color:#f2b733;color:#a05a00}
+[data-theme="dark"] .tsw-n.isf{background:#3a2d10;border-color:#8a6a10;color:#fcc419}
+.switcher{position:fixed;z-index:75;width:450px;max-width:calc(100vw - 16px);background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-lg);display:none;flex-direction:column;max-height:min(560px,calc(100vh - 80px))}
 .switcher.on{display:flex;animation:pop .12s ease-out}
-.sw-top{padding:10px 10px 6px}
+.sw-top{padding:10px 10px 6px;display:flex;gap:6px;align-items:center}
+.sw-top .sbox{flex:1}
 .sw-top .sbox .inp{width:100%;height:36px;font-size:13.5px}
 .sw-list{overflow-y:auto;padding:4px 6px;flex:1;min-height:60px}
-.sw-i{width:100%;display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:10px;text-align:left;border:1px solid transparent}
+.sw-i{width:100%;display:flex;align-items:center;gap:2px;padding:2px 4px 2px 2px;border-radius:10px;border:1px solid transparent}
+.sw-main{flex:1;min-width:0;display:flex;align-items:center;gap:10px;padding:7px 8px;border-radius:9px;text-align:left}
+.sw-more{opacity:.45}.sw-i:hover .sw-more{opacity:1}
+.sw-i.dragging{opacity:.4}
+.ftag{font-style:normal;color:#a05a00;font-weight:700}
+.sw-f{margin:2px 0 6px;border-radius:12px;border:1px solid transparent}
+.sw-f.drop{border:2px dashed var(--accent);background:var(--accent-soft)}
+.sw-fh{display:flex;align-items:center;gap:6px;padding:6px 6px 6px 4px;border-radius:9px;cursor:pointer;user-select:none;font-size:13px}
+.sw-fh:hover{background:var(--panel2)}
+.sw-fh>.i{color:#e8890c;width:17px;height:17px}
+.sw-fh b{font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sw-fh .inp.sm{height:28px;max-width:220px}
+.sw-fh .chev{display:inline-flex;transition:transform .15s;color:var(--text3)}
+.sw-fh .chev .i{width:14px;height:14px}
+.sw-f.closed .chev{transform:rotate(-90deg)}
+.sw-f.closed .sw-fb{display:none}
+.sw-f.curf>.sw-fh b{color:var(--accent)}
+.sw-fb{padding-left:14px;border-left:2px solid var(--line);margin-left:11px}
+.sw-empty{font-size:12px;color:var(--text3);padding:8px 10px}
+.sw-tip{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text3);padding:10px;margin-top:4px;border-top:1px dashed var(--line)}
+.sw-tip .i{width:14px;height:14px;color:#e8890c}
+.sw-newf{display:flex;align-items:center;gap:6px;padding:6px 6px 10px}
+.sw-newf>.i{color:#e8890c;width:18px;height:18px;flex:none}
+.sw-newf .inp{height:32px}
+.newtitle{display:grid;grid-template-columns:1fr 240px;gap:10px}
+.nt-f{display:flex;flex-direction:column;gap:6px}
+.nt-f .fl{margin-bottom:0}
+.pl-fh{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:800;color:var(--text2);margin:10px 0 2px}
+.pl-fh .i{color:#e8890c;width:15px;height:15px}
+.pl-sel{width:140px;flex:none}
 .sw-i:hover,.sw-i.kb{background:var(--panel2);border-color:var(--line)}
 .sw-i.cur{background:var(--accent-soft);border-color:var(--accent)}
 .sw-ic{width:30px;height:30px;border-radius:8px;background:var(--panel2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--text2);flex:none}
@@ -116,6 +148,7 @@ select.inp{padding-right:4px}
 .sw-d{font-size:11.5px;color:var(--text3);white-space:nowrap;flex:none}
 .sw-foot{display:flex;align-items:center;gap:6px;padding:10px;border-top:1px solid var(--line)}
 .newtitle{margin-bottom:14px}
+@media (max-width:700px){.newtitle{grid-template-columns:1fr}}
 .inp.lg{height:44px;font-size:15px;font-weight:700;padding:0 14px}
 .savestate{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--text3);white-space:nowrap;flex:none}
 .savestate .i{width:13px;height:13px;color:#2f9e44}
@@ -168,7 +201,14 @@ select.inp{padding-right:4px}
 .wires path.hz{stroke-dasharray:0}
 .wires .arr{fill:var(--wire)}
 .wires .arr.on{fill:var(--accent)}
-.titleblock{display:inline-flex;flex-direction:column;gap:5px;padding:12px 18px;margin-bottom:30px;background:var(--panel);border:1px solid var(--line);border-radius:12px;position:relative;z-index:1}
+.titleblock{display:inline-flex;flex-direction:column;gap:5px;padding:12px 18px;margin-bottom:30px;background:var(--panel);border:1px solid var(--line);border-radius:12px;position:relative;z-index:1;cursor:text;transition:border-color .12s,box-shadow .12s}
+.titleblock:hover{border-color:var(--accent)}
+.titleblock.editing{border-color:var(--accent);box-shadow:0 0 0 3px var(--ring)}
+.tb-pen{position:absolute;top:-10px;right:-10px;width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(.8);transition:opacity .12s,transform .12s;box-shadow:var(--shadow)}
+.tb-pen .i{width:13px;height:13px}
+.titleblock:hover .tb-pen{opacity:1;transform:none}
+.titleblock.editing .tb-pen{opacity:0}
+.tb-title[contenteditable="true"]{outline:none;user-select:text;-webkit-user-select:text;min-width:120px;background:var(--accent-soft);border-radius:6px;padding:0 4px;margin:0 -4px}
 .tb-title{font-size:19px;font-weight:800;letter-spacing:-.02em}
 .tb-meta{display:flex;flex-wrap:wrap;gap:4px 16px}
 .tb-meta span{font-size:12px;color:var(--text2)}
@@ -982,7 +1022,7 @@ const LIB_EF = [
 const APP_ID = 'bowtie-builder', APP_VER = '1.0.0';
 const LS = {
   index: 'btw.index', proj: id => 'btw.p.' + id, prefs: 'btw.prefs', defaults: 'btw.defaults',
-  lib: 'btw.lib', last: 'btw.last'
+  lib: 'btw.lib', last: 'btw.last', folders: 'btw.folders', pf: 'btw.pf', fclosed: 'btw.fclosed'
 };
 const EFF_NONE = '#adb5bd';
 const TYPE_NONE = '#adb5bd';
@@ -1426,7 +1466,7 @@ function renderDiagram() {
 function titleBlockHTML() {
   const m = P.meta;
   const items = [['사업장·공정', m.site], ['작성자', m.author], ['검토자', m.reviewer], ['작성일', m.date], ['Rev.', m.rev]].filter(x => String(x[1] || '').trim());
-  return `<div class="titleblock xs"><div class="tb-title xt">${esc(m.title || '제목 없음')}</div>${items.length ? `<div class="tb-meta">${items.map(([k, v]) => `<span class="xt">${k} ${esc(v)}</span>`).join('')}</div>` : ''}</div>`;
+  return `<div class="titleblock xs" title="클릭해서 제목 수정"><span class="tb-pen noexport">${ic('pencil')}</span><div class="tb-title xt">${esc(m.title || '제목 없음')}</div>${items.length ? `<div class="tb-meta">${items.map(([k, v]) => `<span class="xt">${k} ${esc(v)}</span>`).join('')}</div>` : ''}</div>`;
 }
 function legendHTML() {
   const c = cfg();
@@ -1768,6 +1808,41 @@ function finishEdit(save, o = {}) {
   else if (e.then && !o.blur && IDX[e.then]) startEdit(e.then, { fresh: true });
 }
 
+/* ---------- 다이어그램 제목 바로 수정 ---------- */
+function startTitleEdit() {
+  if (editing) finishEdit(true);
+  const el = $('#stage .tb-title'); if (!el) return;
+  const orig = P.meta.title;
+  const box = el.closest('.titleblock');
+  box.classList.add('editing');
+  el.textContent = orig; el.contentEditable = 'true'; el.spellcheck = false;
+  el.focus({ preventScroll: true });
+  const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+  let done = false;
+  const finish = save => {
+    if (done) return; done = true;
+    el.removeEventListener('keydown', onKey); el.removeEventListener('blur', onBlur); el.removeEventListener('input', onInput);
+    el.contentEditable = 'false'; box.classList.remove('editing');
+    const v = el.textContent.replace(/\s+/g, ' ').trim();
+    if (save && v && v !== orig) {
+      mutate(() => { P.meta.title = v; }, { key: 'meta:title' });
+      $('#projTitle').value = v; document.title = `${v} · BowTie 분석기`;
+      if (!SEL) renderInspector();
+      toast('제목을 바꿨습니다');
+    } else el.textContent = orig || '제목 없음';
+    drawWires();
+  };
+  const onKey = e => {
+    if (e.isComposing || e.keyCode === 229) return;
+    if (e.key === 'Enter') { e.preventDefault(); e.stopPropagation(); finish(true); el.blur(); }
+    else if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); finish(false); el.blur(); }
+  };
+  const onBlur = () => finish(true);
+  const onInput = () => drawWires();
+  const onPaste = e => { e.preventDefault(); document.execCommand('insertText', false, (e.clipboardData || window.clipboardData).getData('text').replace(/\s+/g, ' ')); };
+  el.addEventListener('keydown', onKey); el.addEventListener('blur', onBlur); el.addEventListener('input', onInput); el.addEventListener('paste', onPaste, { once: false });
+}
+
 /* ---------- 자동완성 ---------- */
 function suggestPool(kind) {
   const seen = new Set(), out = [];
@@ -1949,7 +2024,7 @@ function bindCanvas() {
   const cv = $('#canvas');
   let pan = null, pinch = null;
   const ptrs = new Map();
-  const isUI = t => t.closest('.node, button, input, .ins, .ctools, .hint, [data-act], .add-row');
+  const isUI = t => t.closest('.node, button, input, .ins, .ctools, .hint, [data-act], .add-row, .titleblock');
   cv.addEventListener('pointerdown', e => {
     ptrs.set(e.pointerId, { x: e.clientX, y: e.clientY });
     if (ptrs.size === 2) {
@@ -1991,6 +2066,8 @@ function bindCanvas() {
   cv.addEventListener('click', e => {
     const act = e.target.closest('[data-act]');
     if (act) { runAct(act.dataset.act, act.dataset); return; }
+    const tb = e.target.closest('.titleblock');
+    if (tb) { if (!tb.querySelector('.tb-title[contenteditable="true"]')) startTitleEdit(); return; }
     const tool = e.target.closest('[data-tool]');
     if (tool) { const id = tool.closest('[data-id]').dataset.id; runTool(tool.dataset.tool, id); return; }
     const n = e.target.closest('.node');
@@ -2150,6 +2227,7 @@ function overviewHTML() {
   <div class="sec">
     <div class="sec-t">${ic('tag')}작성 정보</div>
     ${field('제목', `<input class="inp" data-meta="title" value="${esc(mt.title)}">`)}
+    ${field('폴더 (공정)', `<select class="inp" data-pfolder="1">${folderOptions(PF[P.id] || '')}</select><div class="newrow" data-newrow="folder" hidden><input class="inp" data-new="folder" placeholder="새 폴더 이름 입력 후 Enter"><button class="btn sm primary" data-ia="newOk" data-k="folder">만들기</button></div>`)}
     ${field('사업장·공정', `<input class="inp" data-meta="site" value="${esc(mt.site)}" placeholder="예: ○○공장 위험물 저장소">`)}
     <div class="grid2">
       ${field('작성자', `<input class="inp" data-meta="author" value="${esc(mt.author)}">`)}
@@ -2342,6 +2420,10 @@ function bindInspector() {
     else if (t.dataset.req && m) { const id = m.obj.id, k = t.dataset.req; mutate(() => { const o = IDX[id].obj; o.req = Object.assign({ e: false, i: false, a: false }, o.req, { [k]: t.checked }); }); renderInspector(); }
     else if (t.dataset.fn && m) setProp(m.obj.id, t.dataset.fn, +t.value);
     else if (t.dataset.iaSel === 'copyTo' && m && t.value) { const v = t.value; t.value = ''; copyTo(m.obj.id, v); }
+    else if (t.dataset.pfolder) {
+      if (t.value === '__new') { const r = $('[data-newrow="folder"]', $('#insp')); r.hidden = false; r.querySelector('input').focus(); }
+      else { setPF(P.id, t.value); const f = folderOfP(P.id); toast(f ? `'${f.name}' 폴더에 넣었습니다` : '폴더에서 뺐습니다'); }
+    }
   });
   body.addEventListener('keydown', e => {
     const t = e.target;
@@ -2388,6 +2470,7 @@ function inspAction(a, m, el) {
 }
 function addConfigItem(k, name) {
   name = String(name || '').trim(); if (!name) return;
+  if (k === 'folder') { const f = addFolder(name); if (f) { setPF(P.id, f.id); renderInspector(); toast(`'${f.name}' 폴더를 만들고 넣었습니다`); } return; }
   const m = SEL && IDX[SEL];
   mutate(() => {
     const c = cfg();
@@ -2696,10 +2779,12 @@ function applyOutline(p, text, mode = 'replace') {
 }
 
 /* ---------- 새로 만들기 ---------- */
-function openNew() {
+function openNew(o = {}) {
+  const fsel = o.folder !== undefined ? o.folder : (PF[P.id] || '');
   openModal({
     title: '새 보우타이 만들기', cls: 'wide',
-    body: `<div class="newtitle"><label class="fl" for="newTitle">제목</label><input id="newTitle" class="inp lg" placeholder="예: ○○공장 LPG 저장소 화재·폭발 (비워 두면 템플릿 이름 사용)" maxlength="80"></div>
+    body: `<div class="newtitle"><div class="nt-t"><label class="fl" for="newTitle">제목</label><input id="newTitle" class="inp lg" placeholder="예: ○○공장 LPG 저장소 화재·폭발 (비워 두면 템플릿 이름 사용)" maxlength="80"></div>
+      <div class="nt-f"><label class="fl" for="newFolder">저장 폴더 (공정)</label><select id="newFolder" class="inp lg">${folderOptions(fsel)}</select><input id="newFolderName" class="inp lg" placeholder="새 폴더 이름" hidden></div></div>
     <p class="lead">제목을 쓰고 아래에서 시작할 형태를 고르세요. 제목만 쓰고 <b>Enter</b>를 누르면 빈 보우타이로 바로 시작합니다. 지금 작업 중인 보우타이는 자동 저장되어 제목 옆 목록에 남아 있습니다.</p>
     <div class="tpl-grid">${TEMPLATES.map((t, i) => {
       const r = parseOutline(t.text); const nb = [...r.threats, ...r.cons].reduce((s, x) => s + x.barriers.length, 0);
@@ -2707,22 +2792,26 @@ function openNew() {
     }).join('')}</div>
     <p class="note">템플릿은 시작점일 뿐입니다. 사업장 실정에 맞게 위협·장벽·담당을 수정하고, 관련 근거는 현행 법령·기준을 확인해 직접 입력하세요.</p>`,
     onMount: (el, m) => {
-      const ti = el.querySelector('#newTitle');
+      const ti = el.querySelector('#newTitle'), fs = el.querySelector('#newFolder'), fn = el.querySelector('#newFolderName');
       setTimeout(() => ti.focus(), 40);
-      ti.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.isComposing && e.keyCode !== 229) { e.preventDefault(); m.close(); createFromTemplate(TEMPLATES[0], ti.value); } });
-      el.addEventListener('click', e => { const b = e.target.closest('.tpl'); if (!b) return; const title = ti.value; m.close(); createFromTemplate(TEMPLATES[+b.dataset.i], title); });
+      fs.addEventListener('change', () => { fn.hidden = fs.value !== '__new'; if (!fn.hidden) fn.focus(); });
+      const folderVal = () => { if (fs.value !== '__new') return fs.value; const f = addFolder(fn.value); return f ? f.id : ''; };
+      const go = t => { const title = ti.value, fid = folderVal(); m.close(); createFromTemplate(t, title, fid); };
+      [ti, fn].forEach(inp => inp.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.isComposing && e.keyCode !== 229) { e.preventDefault(); go(TEMPLATES[0]); } }));
+      el.addEventListener('click', e => { const b = e.target.closest('.tpl'); if (!b) return; go(TEMPLATES[+b.dataset.i]); });
     }
   });
 }
-function createFromTemplate(t, title) {
+function createFromTemplate(t, title, fid) {
   if (editing) finishEdit(true);
   saveNow();
   title = String(title || '').trim();
   const p = blankProject(title || (t.key === 'blank' ? '새 보우타이' : t.title));
+  if (fid) { PF[p.id] = fid; saveFolders(); }
   applyOutline(p, t.text, 'replace');
   if (t.meta) Object.assign(p.meta, t.meta);
   openProjectObj(p);
-  toast(`'${p.meta.title}'을(를) 만들었습니다`);
+  toast(`'${p.meta.title}'을(를) 만들었습니다${fid && folders.find(x => x.id === fid) ? ` · 폴더: ${folders.find(x => x.id === fid).name}` : ''}`);
 }
 function openProjectObj(p) {
   P = p; SEL = null; resetHistory(); buildIndex(); saveNow();
@@ -2730,53 +2819,194 @@ function openProjectObj(p) {
   requestAnimationFrame(() => { drawWires(); fitView(); });
 }
 
-/* ---------- 제목 옆 작업 목록 (바로 열기) ---------- */
-let SW = { open: false, q: '', i: -1 };
+/* ---------- 폴더 (공정별 정리) ---------- */
+let folders = lsGet(LS.folders, []);
+let PF = lsGet(LS.pf, {});
+let foldClosed = new Set(lsGet(LS.fclosed, []));
+const saveFolders = () => { lsSet(LS.folders, folders); lsSet(LS.pf, PF); lsSet(LS.fclosed, [...foldClosed]); };
+const folderOfP = pid => folders.find(f => f.id === PF[pid]) || null;
+function addFolder(name) {
+  name = String(name || '').trim(); if (!name) return null;
+  let f = folders.find(x => normName(x.name) === normName(name));
+  if (!f) { f = { id: uid(), name, created: Date.now() }; folders.push(f); }
+  saveFolders(); return f;
+}
+function setPF(pid, fid) {
+  if (fid && folders.some(f => f.id === fid)) PF[pid] = fid; else delete PF[pid];
+  saveFolders(); updateSwitcherCount();
+  if (pid === P.id && !SEL) renderInspector();
+}
+function folderOptions(cur, withNew = true) {
+  return `<option value="">폴더 없음</option>${folders.map(f => `<option value="${f.id}" ${cur === f.id ? 'selected' : ''}>${esc(f.name)}</option>`).join('')}${withNew ? '<option value="__new">+ 새 폴더 만들기…</option>' : ''}`;
+}
+
+/* ---------- 프로젝트 공통 동작 ---------- */
 function projectIndex() { return lsGet(LS.index, []).filter(x => localStorage.getItem(LS.proj(x.id)) != null); }
-function updateSwitcherCount() { const n = $('#tswN'); if (n) n.textContent = projectIndex().length; }
+function dupProject(id) {
+  if (id === P.id) saveNow();
+  const p = normalizeProject(lsGet(LS.proj(id))); p.id = uid(); p.meta.title += ' (사본)'; p.created = p.updated = Date.now();
+  lsSet(LS.proj(p.id), p);
+  const ix = lsGet(LS.index, []); ix.unshift({ id: p.id, title: p.meta.title, updated: p.updated, nT: p.threats.length, nC: p.cons.length, nB: countBarriers(p) }); lsSet(LS.index, ix);
+  if (PF[id]) setPF(p.id, PF[id]); else updateSwitcherCount();
+  toast(`'${p.meta.title}'을(를) 만들었습니다`);
+}
+function backupProject(id) {
+  if (id === P.id) saveNow();
+  const p = lsGet(LS.proj(id)); if (!p) return;
+  download(`${(p.meta?.title || '보우타이').replace(/[\\/:*?"<>|]+/g, '_')}_보우타이.json`, JSON.stringify(p, null, 2), 'application/json');
+}
+async function deleteProject(id) {
+  const it = lsGet(LS.index, []).find(x => x.id === id);
+  if (!await confirmBox(`'<b>${esc(it?.title || '제목 없음')}</b>'을(를) 삭제할까요?<br>삭제하면 되돌릴 수 없습니다.`, { ok: '삭제', danger: true, title: '보우타이 삭제' })) return false;
+  lsDel(LS.proj(id)); lsSet(LS.index, lsGet(LS.index, []).filter(x => x.id !== id));
+  delete PF[id]; saveFolders();
+  if (id === P.id) { const rest = projectIndex(); if (rest.length) openProject(rest[0].id); else openProjectObj(blankProject()); }
+  updateSwitcherCount(); toast('삭제했습니다');
+  return true;
+}
+function backupBundle(ids, name) {
+  saveNow();
+  const projects = ids.map(id => lsGet(LS.proj(id))).filter(Boolean);
+  const usedF = new Set(ids.map(id => PF[id]).filter(Boolean));
+  const pf = Object.fromEntries(ids.filter(id => PF[id]).map(id => [id, PF[id]]));
+  download(`${name.replace(/[\\/:*?"<>|]+/g, '_')}_보우타이백업_${today()}.json`, JSON.stringify({ app: APP_ID, kind: 'all', folders: folders.filter(f => usedF.has(f.id)), pf, projects }, null, 2), 'application/json');
+  toast(`${projects.length}개 보우타이를 한 파일로 백업했습니다`);
+}
+
+/* ---------- 제목 옆 작업 목록 (폴더별) ---------- */
+let SW = { open: false, q: '', i: -1, newFolder: false, newFor: null, renaming: null, drag: null };
+function updateSwitcherCount() {
+  const n = $('#tswN'); if (!n || !P) return;
+  const f = folderOfP(P.id);
+  n.textContent = f ? f.name : `${projectIndex().length}개`;
+  n.classList.toggle('isf', !!f);
+  n.title = f ? `폴더: ${f.name}` : '저장된 보우타이 수';
+}
 function openSwitcher() {
   if (SW.open) return closeSwitcher();
   if (editing) finishEdit(true);
   saveNow(); closeMenu();
-  SW = { open: true, q: '', i: -1 };
+  SW = { open: true, q: '', i: -1, newFolder: false, newFor: null, renaming: null, drag: null };
   const box = $('#switcher'), r = $('#tswitch').getBoundingClientRect();
-  box.style.left = Math.max(8, Math.min(r.left, innerWidth - 440)) + 'px';
+  box.style.left = Math.max(8, Math.min(r.left, innerWidth - 460)) + 'px';
   box.style.top = (r.bottom + 6) + 'px';
-  box.innerHTML = `<div class="sw-top"><div class="sbox">${ic('search')}<input id="swq" class="inp" placeholder="제목으로 찾기" autocomplete="off"></div></div><div class="sw-list" id="swList"></div>
+  box.innerHTML = `<div class="sw-top"><div class="sbox">${ic('search')}<input id="swq" class="inp" placeholder="제목·폴더로 찾기" autocomplete="off"></div><button class="btn sm" data-sw="folder" title="공정별로 묶을 폴더 만들기">${ic('folder')}새 폴더</button></div>
+    <div class="sw-list" id="swList"></div>
     <div class="sw-foot"><button class="btn sm primary" data-sw="new">${ic('file-plus')}새 보우타이</button><button class="btn sm" data-sw="copy" title="지금 작업을 복사해 다른 제목으로 저장">${ic('copy')}다른 제목으로 사본 저장</button><span class="sp"></span><button class="btn sm ghost" data-sw="manage">관리</button></div>`;
   box.classList.add('on');
   paintSwitcher();
-  setTimeout(() => $('#swq').focus(), 20);
+  setTimeout(() => $('#swq') && $('#swq').focus(), 20);
   const q = $('#swq');
   q.addEventListener('input', () => { SW.q = q.value; SW.i = -1; paintSwitcher(); });
   q.addEventListener('keydown', e => {
     if (e.isComposing || e.keyCode === 229) return;
-    const items = $$('#swList .sw-i');
-    if (e.key === 'ArrowDown') { e.preventDefault(); SW.i = Math.min(items.length - 1, SW.i + 1); paintSel(items); }
-    else if (e.key === 'ArrowUp') { e.preventDefault(); SW.i = Math.max(0, SW.i - 1); paintSel(items); }
-    else if (e.key === 'Enter') { e.preventDefault(); const it = items[SW.i >= 0 ? SW.i : 0]; if (it) switchTo(it.dataset.id); }
+    const items = $$('#swList [data-open]');
+    const paintSel = () => { items.forEach((x, i) => x.closest('.sw-i').classList.toggle('kb', i === SW.i)); if (items[SW.i]) items[SW.i].scrollIntoView({ block: 'nearest' }); };
+    if (e.key === 'ArrowDown') { e.preventDefault(); SW.i = Math.min(items.length - 1, SW.i + 1); paintSel(); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); SW.i = Math.max(0, SW.i - 1); paintSel(); }
+    else if (e.key === 'Enter') { e.preventDefault(); const it = items[SW.i >= 0 ? SW.i : 0]; if (it) switchTo(it.dataset.open); }
     else if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); closeSwitcher(); }
   });
-  const paintSel = items => { items.forEach((x, i) => x.classList.toggle('kb', i === SW.i)); if (items[SW.i]) items[SW.i].scrollIntoView({ block: 'nearest' }); };
   box.onclick = e => {
-    const it = e.target.closest('.sw-i'); if (it) return switchTo(it.dataset.id);
-    const a = e.target.closest('[data-sw]'); if (!a) return;
+    const t = e.target;
+    const op = t.closest('[data-open]'); if (op) return switchTo(op.dataset.open);
+    const tg = t.closest('[data-ftoggle]');
+    if (tg && !t.closest('button, input')) { const id = tg.dataset.ftoggle; foldClosed.has(id) ? foldClosed.delete(id) : foldClosed.add(id); saveFolders(); return paintSwitcher(); }
+    const pm = t.closest('[data-pmenu]'); if (pm) return projectMenu(pm.dataset.pmenu, pm);
+    const fm = t.closest('[data-fmenu]'); if (fm) return folderMenu(fm.dataset.fmenu, fm);
+    const fn = t.closest('[data-fnew]'); if (fn) { closeSwitcher(); return openNew({ folder: fn.dataset.fnew }); }
+    const mk = t.closest('[data-mkfolder]'); if (mk) return commitNewFolder();
+    const a = t.closest('[data-sw]'); if (!a) return;
+    if (a.dataset.sw === 'folder') { SW.newFolder = true; SW.newFor = null; paintSwitcher(); return; }
     closeSwitcher();
     if (a.dataset.sw === 'new') openNew();
     if (a.dataset.sw === 'manage') openProjects();
     if (a.dataset.sw === 'copy') copyAsNew();
   };
+  box.onkeydown = e => {
+    if (e.isComposing || e.keyCode === 229) return;
+    if (e.target.id === 'swNewF') { if (e.key === 'Enter') { e.preventDefault(); commitNewFolder(); } if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); SW.newFolder = false; paintSwitcher(); } }
+    if (e.target.dataset.renf) { if (e.key === 'Enter') { e.preventDefault(); e.target.blur(); } if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); SW.renaming = null; paintSwitcher(); } }
+  };
+  box.addEventListener('focusout', e => {
+    const t = e.target;
+    if (t.dataset && t.dataset.renf && SW.renaming) {
+      const f = folders.find(x => x.id === t.dataset.renf), v = t.value.trim();
+      if (f && v) { f.name = v; saveFolders(); updateSwitcherCount(); if (!SEL) renderInspector(); }
+      SW.renaming = null; setTimeout(paintSwitcher, 0);
+    }
+  });
+  box.ondragstart = e => { const r = e.target.closest('.sw-i'); if (!r) return; SW.drag = r.dataset.id; e.dataTransfer.effectAllowed = 'move'; try { e.dataTransfer.setData('text/plain', r.dataset.id); } catch (_) { } r.classList.add('dragging'); };
+  box.ondragover = e => { if (!SW.drag) return; const f = e.target.closest('.sw-f'); $$('.sw-f.drop', box).forEach(x => x !== f && x.classList.remove('drop')); if (f) { e.preventDefault(); f.classList.add('drop'); } };
+  box.ondrop = e => { if (!SW.drag) return; const f = e.target.closest('.sw-f'); if (f) { e.preventDefault(); setPF(SW.drag, f.dataset.fid); toast(f.dataset.fid ? `'${folders.find(x => x.id === f.dataset.fid).name}' 폴더로 옮겼습니다` : '폴더 밖으로 옮겼습니다'); } SW.drag = null; paintSwitcher(); };
+  box.ondragend = () => { SW.drag = null; $$('.sw-f.drop, .sw-i.dragging', box).forEach(x => x.classList.remove('drop', 'dragging')); };
+}
+function commitNewFolder() {
+  const inp = $('#swNewF'); if (!inp) return;
+  const f = addFolder(inp.value); if (!f) { inp.focus(); return; }
+  if (SW.newFor) setPF(SW.newFor, f.id);
+  foldClosed.delete(f.id); saveFolders();
+  SW.newFolder = false; SW.newFor = null; paintSwitcher(); updateSwitcherCount();
+  toast(`'${f.name}' 폴더를 만들었습니다. 보우타이를 끌어다 넣거나 ⋯ 메뉴로 옮기세요`, { ms: 3500 });
 }
 function paintSwitcher() {
   const list = $('#swList'); if (!list) return;
-  const q = normName(SW.q);
-  const all = projectIndex();
-  const items = all.filter(x => !q || normName(x.title).includes(q));
-  list.innerHTML = items.length ? items.map(x => `<button class="sw-i${x.id === P.id ? ' cur' : ''}" data-id="${x.id}">
-      <span class="sw-ic">${ic(x.id === P.id ? 'check' : 'bowtie')}</span>
-      <span class="sw-b"><span class="sw-t">${esc(x.title || '제목 없음')}</span><span class="sw-s">${x.id === P.id ? '<em>지금 작업 중</em> · ' : ''}위협 ${x.nT ?? 0} · 결과 ${x.nC ?? 0} · 장벽 ${x.nB ?? 0}</span></span>
-      <span class="sw-d">${fmtTime(x.updated)}</span></button>`).join('')
-    : `<div class="empty" style="padding:18px;text-align:center">${q ? '찾는 제목이 없습니다' : '저장된 작업이 없습니다'}</div>`;
+  const q = normName(SW.q), all = projectIndex();
+  const row = (x, tag) => `<div class="sw-i${x.id === P.id ? ' cur' : ''}" data-id="${x.id}" draggable="true">
+      <button class="sw-main" data-open="${x.id}"><span class="sw-ic">${ic(x.id === P.id ? 'check' : 'bowtie')}</span>
+      <span class="sw-b"><span class="sw-t">${esc(x.title || '제목 없음')}</span><span class="sw-s">${x.id === P.id ? '<em>지금 작업 중</em> · ' : ''}${tag ? `<i class="ftag">${esc(tag)}</i> · ` : ''}위협 ${x.nT ?? 0} · 결과 ${x.nC ?? 0} · 장벽 ${x.nB ?? 0}</span></span>
+      <span class="sw-d">${fmtTime(x.updated)}</span></button>
+      <button class="ibtn sm sw-more" data-pmenu="${x.id}" title="폴더 이동 · 복제 · 백업 · 삭제">${ic('more')}</button></div>`;
+  const newF = SW.newFolder ? `<div class="sw-newf">${ic('folder')}<input id="swNewF" class="inp" placeholder="폴더 이름 (예: 1공정 증류, 2공정 저장)" maxlength="40"><button class="btn sm primary" data-mkfolder>만들기</button></div>` : '';
+  if (q) {
+    const items = all.filter(x => normName(x.title).includes(q) || normName(folderOfP(x.id)?.name).includes(q));
+    list.innerHTML = newF + (items.map(x => row(x, folderOfP(x.id)?.name)).join('') || `<div class="sw-empty">찾는 제목이 없습니다</div>`);
+  } else if (!folders.length) {
+    list.innerHTML = newF + (all.map(x => row(x)).join('') || `<div class="sw-empty">저장된 작업이 없습니다</div>`)
+      + (SW.newFolder ? '' : `<div class="sw-tip">${ic('folder')}공정별로 묶고 싶다면 위의 <b>새 폴더</b>를 눌러 보세요</div>`);
+  } else {
+    const sec = (f, items) => {
+      const id = f ? f.id : '_none', closed = foldClosed.has(id), ren = f && SW.renaming === f.id;
+      return `<div class="sw-f${closed ? ' closed' : ''}${f && PF[P.id] === f.id ? ' curf' : ''}" data-fid="${f ? f.id : ''}">
+        <div class="sw-fh" data-ftoggle="${id}"><span class="chev">${ic('chev-d')}</span>${ic('folder')}
+          ${ren ? `<input class="inp sm" data-renf="${f.id}" value="${esc(f.name)}">` : `<b>${esc(f ? f.name : '폴더 없음')}</b>`}<span class="cnt">${items.length}</span><span class="sp"></span>
+          ${f ? `<button class="ibtn sm" data-fnew="${f.id}" title="이 폴더에 새 보우타이">${ic('plus')}</button><button class="ibtn sm" data-fmenu="${f.id}" title="이름 바꾸기 · 백업 · 삭제">${ic('more')}</button>` : ''}</div>
+        <div class="sw-fb">${items.map(x => row(x)).join('') || `<div class="sw-empty">비어 있음 · 보우타이를 여기로 끌어다 놓으세요</div>`}</div></div>`;
+    };
+    list.innerHTML = newF + folders.map(f => sec(f, all.filter(x => PF[x.id] === f.id))).join('') + sec(null, all.filter(x => !folderOfP(x.id)));
+  }
+  if (SW.newFolder) setTimeout(() => { const i = $('#swNewF'); if (i) i.focus(); }, 0);
+  if (SW.renaming) setTimeout(() => { const i = $(`[data-renf="${SW.renaming}"]`); if (i) { i.focus(); i.select(); } }, 0);
+}
+function projectMenu(pid, btn) {
+  const r = btn.getBoundingClientRect(), cur = PF[pid] || '';
+  const mv = fid => () => { setPF(pid, fid); paintSwitcher(); toast(fid ? `'${folders.find(x => x.id === fid).name}' 폴더로 옮겼습니다` : '폴더 밖으로 옮겼습니다'); };
+  openMenu(r.left - 200, r.bottom + 4, [
+    { head: '폴더로 옮기기' },
+    ...folders.map(f => ({ icon: f.id === cur ? 'check' : 'folder', label: f.name, disabled: f.id === cur, run: mv(f.id) })),
+    { icon: !cur ? 'check' : 'x', label: '폴더 없음', disabled: !cur, run: mv('') },
+    { icon: 'plus', label: '새 폴더 만들어서 옮기기', run: () => { SW.newFolder = true; SW.newFor = pid; SW.q = ''; const q = $('#swq'); if (q) q.value = ''; paintSwitcher(); } },
+    '-',
+    { icon: 'copy', label: '복제', run: () => { dupProject(pid); paintSwitcher(); } },
+    { icon: 'download', label: 'JSON 백업', run: () => backupProject(pid) },
+    { icon: 'trash', label: '삭제', danger: true, run: async () => { await deleteProject(pid); if (SW.open) paintSwitcher(); } }
+  ]);
+}
+function folderMenu(fid, btn) {
+  const f = folders.find(x => x.id === fid); if (!f) return;
+  const r = btn.getBoundingClientRect(), ids = projectIndex().filter(x => PF[x.id] === fid).map(x => x.id);
+  openMenu(r.left - 200, r.bottom + 4, [
+    { head: '폴더 · ' + f.name },
+    { icon: 'pencil', label: '이름 바꾸기', run: () => { SW.renaming = fid; paintSwitcher(); } },
+    { icon: 'file-plus', label: '이 폴더에 새 보우타이', run: () => { closeSwitcher(); openNew({ folder: fid }); } },
+    { icon: 'download', label: `폴더 통째로 백업 (${ids.length}개)`, disabled: !ids.length, run: () => backupBundle(ids, f.name) },
+    '-',
+    { icon: 'trash', label: '폴더 삭제 (안의 보우타이는 유지)', danger: true, run: async () => {
+      if (!await confirmBox(`'<b>${esc(f.name)}</b>' 폴더를 삭제할까요?<br>안에 있는 보우타이 ${ids.length}개는 지워지지 않고 '폴더 없음'으로 옮겨집니다.`, { ok: '폴더 삭제', danger: true })) return;
+      folders = folders.filter(x => x.id !== fid); ids.forEach(id => delete PF[id]); foldClosed.delete(fid); saveFolders(); updateSwitcherCount();
+      if (SW.open) paintSwitcher(); toast('폴더를 삭제했습니다');
+    } }
+  ]);
 }
 function closeSwitcher() { SW.open = false; const b = $('#switcher'); if (b) b.classList.remove('on'); }
 function switchTo(id) {
@@ -2788,45 +3018,54 @@ function switchTo(id) {
 function copyAsNew() {
   if (editing) finishEdit(true);
   saveNow();
+  const src = P.id;
   const p = normalizeProject(clone(P));
   p.id = uid(); p.created = p.updated = Date.now(); p.meta.title = (P.meta.title || '보우타이') + ' (사본)';
+  if (PF[src]) { PF[p.id] = PF[src]; saveFolders(); }
   openProjectObj(p);
   const t = $('#projTitle'); if (t) { t.focus(); t.select(); }
   toast('사본을 만들었습니다. 제목을 바로 고쳐 쓰세요');
 }
 
-/* ---------- 프로젝트 목록 ---------- */
+/* ---------- 프로젝트 목록 (관리) ---------- */
 function openProjects() {
   if (editing) finishEdit(true);
   saveNow();
-  const m = openModal({ title: '내 프로젝트', cls: 'wide', body: '<div id="plist"></div>', onMount: (el, mm) => paintProjects(el, mm) });
+  openModal({ title: '내 보우타이 관리', cls: 'wide', body: '<div id="plist"></div>', onMount: (el, mm) => paintProjects(el, mm) });
 }
 function paintProjects(el, mm) {
-  const idx = lsGet(LS.index, []).filter(x => localStorage.getItem(LS.proj(x.id)) != null);
+  const idx = projectIndex();
+  const order = new Map(folders.map((f, i) => [f.id, i]));
+  idx.sort((a, b) => (order.has(PF[a.id]) ? order.get(PF[a.id]) : 1e9) - (order.has(PF[b.id]) ? order.get(PF[b.id]) : 1e9));
   const box = el.querySelector('#plist');
-  box.innerHTML = `<div class="pl-bar"><button class="btn primary" data-pa="new">${ic('file-plus')}새로 만들기</button><button class="btn" data-pa="import">${ic('upload')}JSON 파일 불러오기</button><span class="sp"></span><span class="note">이 브라우저에 저장된 보우타이 ${idx.length}개</span></div>
-    <div class="plist">${idx.map(x => `<div class="pi${x.id === P.id ? ' cur' : ''}" data-id="${x.id}">
+  let lastF = null;
+  box.innerHTML = `<div class="pl-bar"><button class="btn primary" data-pa="new">${ic('file-plus')}새로 만들기</button><button class="btn" data-pa="import">${ic('upload')}JSON 파일 불러오기</button><button class="btn" data-pa="all">${ic('database')}전체 백업</button><span class="sp"></span><span class="note">보우타이 ${idx.length}개 · 폴더 ${folders.length}개</span></div>
+    <div class="plist">${idx.map(x => {
+      const f = folderOfP(x.id), fid = f ? f.id : '';
+      const head = fid !== lastF ? `<div class="pl-fh">${ic('folder')}${esc(f ? f.name : '폴더 없음')}</div>` : '';
+      lastF = fid;
+      return head + `<div class="pi${x.id === P.id ? ' cur' : ''}" data-id="${x.id}">
       <button class="pi-main" data-pa="open"><span class="pi-t">${esc(x.title || '제목 없음')}${x.id === P.id ? ' <em>열려 있음</em>' : ''}</span><span class="pi-s">위협 ${x.nT ?? '-'} · 결과 ${x.nC ?? '-'} · 장벽 ${x.nB ?? '-'} · 수정 ${fmtTime(x.updated)}</span></button>
-      <button class="ibtn" data-pa="dup" title="복제">${ic('copy')}</button><button class="ibtn" data-pa="json" title="JSON 백업 받기">${ic('download')}</button><button class="ibtn danger" data-pa="del" title="삭제">${ic('trash')}</button></div>`).join('')}</div>
+      <select class="inp sm pl-sel" data-pf="${x.id}" title="폴더 옮기기">${folderOptions(fid)}</select>
+      <button class="ibtn" data-pa="dup" title="복제">${ic('copy')}</button><button class="ibtn" data-pa="json" title="JSON 백업 받기">${ic('download')}</button><button class="ibtn danger" data-pa="del" title="삭제">${ic('trash')}</button></div>`;
+    }).join('')}</div>
     <p class="note">저장 위치는 이 브라우저입니다. 브라우저 기록(사이트 데이터)을 지우면 함께 지워지니 중요한 건 JSON 백업을 받아 두세요. 다른 PC로 옮길 때도 JSON 파일이나 [공유] 링크를 쓰면 됩니다.</p>`;
+  box.onchange = e => {
+    const s = e.target.closest('[data-pf]'); if (!s) return;
+    let v = s.value;
+    if (v === '__new') { const n = prompt('새 폴더 이름'); const f = n && addFolder(n); if (!f) { paintProjects(el, mm); return; } v = f.id; }
+    setPF(s.dataset.pf, v); paintProjects(el, mm);
+  };
   box.onclick = async e => {
     const a = e.target.closest('[data-pa]'); if (!a) return;
     const id = a.closest('[data-id]')?.dataset.id;
     if (a.dataset.pa === 'new') { mm.close(); return openNew(); }
-    if (a.dataset.pa === 'import') { return $('#fileIn').click(); }
+    if (a.dataset.pa === 'import') return $('#fileIn').click();
+    if (a.dataset.pa === 'all') return backupBundle(projectIndex().map(x => x.id), '전체');
     if (a.dataset.pa === 'open') { mm.close(); if (id !== P.id) openProject(id); return; }
-    if (a.dataset.pa === 'dup') { const p = normalizeProject(lsGet(LS.proj(id))); reid(p); p.id = uid(); p.meta.title += ' (사본)'; p.created = p.updated = Date.now(); lsSet(LS.proj(p.id), p); const ix = lsGet(LS.index, []); ix.unshift({ id: p.id, title: p.meta.title, updated: p.updated, nT: p.threats.length, nC: p.cons.length, nB: countBarriers(p) }); lsSet(LS.index, ix); paintProjects(el, mm); return; }
-    if (a.dataset.pa === 'json') { const p = lsGet(LS.proj(id)); download(`${(p.meta?.title || '보우타이').replace(/[\\/:*?"<>|]+/g, '_')}_보우타이.json`, JSON.stringify(p, null, 2), 'application/json'); return; }
-    if (a.dataset.pa === 'del') {
-      const it = lsGet(LS.index, []).find(x => x.id === id);
-      if (!await confirmBox(`'<b>${esc(it?.title || '제목 없음')}</b>'을(를) 삭제할까요?<br>삭제하면 되돌릴 수 없습니다.`, { ok: '삭제', danger: true, title: '프로젝트 삭제' })) return;
-      lsDel(LS.proj(id)); lsSet(LS.index, lsGet(LS.index, []).filter(x => x.id !== id));
-      if (id === P.id) {
-        const rest = lsGet(LS.index, []);
-        if (rest.length) openProject(rest[0].id); else openProjectObj(blankProject());
-      }
-      paintProjects(el, mm); toast('삭제했습니다');
-    }
+    if (a.dataset.pa === 'dup') { dupProject(id); return paintProjects(el, mm); }
+    if (a.dataset.pa === 'json') return backupProject(id);
+    if (a.dataset.pa === 'del') { if (await deleteProject(id)) paintProjects(el, mm); }
   };
 }
 function openProject(id) {
@@ -2842,6 +3081,23 @@ async function importFile(file) {
     const text = await file.text();
     if (/\.txt$/i.test(file.name)) { const p = blankProject(file.name.replace(/\.txt$/i, '')); applyOutline(p, text); openProjectObj(p); toast('텍스트 개요로 보우타이를 만들었습니다'); return; }
     const raw = JSON.parse(text);
+    if (raw && raw.kind === 'all' && Array.isArray(raw.projects)) {
+      const fmap = {};
+      (raw.folders || []).forEach(f => { const nf = addFolder(f.name); if (nf) fmap[f.id] = nf.id; });
+      const ix = lsGet(LS.index, []); let first = null;
+      raw.projects.forEach(rp => {
+        const p = normalizeProject(rp), old = rp.id; p.id = uid(); p.updated = Date.now();
+        lsSet(LS.proj(p.id), p); ix.unshift({ id: p.id, title: p.meta.title, updated: p.updated, nT: p.threats.length, nC: p.cons.length, nB: countBarriers(p) });
+        const fo = raw.pf && raw.pf[old]; if (fo && fmap[fo]) PF[p.id] = fmap[fo];
+        if (!first) first = p.id;
+      });
+      lsSet(LS.index, ix); saveFolders();
+      modalStack.slice().forEach(m => m.close());
+      if (first) openProject(first);
+      updateSwitcherCount();
+      toast(`보우타이 ${raw.projects.length}개를 불러왔습니다 (폴더 포함)`, { ms: 3500 });
+      return;
+    }
     if (!raw || (!Array.isArray(raw.threats) && !Array.isArray(raw.cons))) throw new Error('형식');
     const p = normalizeProject(raw); p.id = uid(); reid(p); p.updated = Date.now();
     modalStack.slice().forEach(m => m.close());
@@ -3098,10 +3354,7 @@ function bindSettings(box, paint) {
       if (a === 'resetDef') { lsDel(LS.defaults); toast('기본값을 처음 상태로 되돌렸습니다'); }
       if (a === 'json') exportJSON();
       if (a === 'import') $('#fileIn').click();
-      if (a === 'allJson') {
-        const all = lsGet(LS.index, []).map(x => lsGet(LS.proj(x.id))).filter(Boolean);
-        download(`보우타이_전체백업_${today()}.json`, JSON.stringify({ app: APP_ID, kind: 'all', projects: all }, null, 2), 'application/json');
-      }
+      if (a === 'allJson') backupBundle(projectIndex().map(x => x.id), '전체');
       if (a === 'wipe') {
         if (!await confirmBox('이 브라우저에 저장된 <b>모든 보우타이와 설정</b>을 지울까요?<br>되돌릴 수 없습니다.', { ok: '모두 지우기', danger: true })) return;
         Object.keys(localStorage).filter(k => k.startsWith('btw.')).forEach(lsDel);
@@ -3480,7 +3733,7 @@ function bindTop() {
   });
   document.addEventListener('mousedown', e => {
     if (!e.target.closest('#ctx')) closeMenu();
-    if (SW.open && !e.target.closest('#switcher, [data-cmd="switcher"]')) closeSwitcher();
+    if (SW.open && !e.target.closest('#switcher, [data-cmd="switcher"], #ctx, .mwrap')) closeSwitcher();
   });
   window.addEventListener('blur', closeMenu);
   $('#insp-backdrop').addEventListener('click', () => document.body.classList.remove('insp-open'));
@@ -3490,7 +3743,7 @@ function bindGlobalKeys() {
     const t = e.target, mod = e.ctrlKey || e.metaKey, code = e.code;
     if (e.isComposing || (e.keyCode === 229 && !mod)) return;
     const inField = t.closest && t.closest('input, textarea, select, [contenteditable="true"]');
-    if (mod && !e.altKey && (code === 'KeyZ' || code === 'KeyY') && !editing && !(modalStack.length && inField)) {
+    if (mod && !e.altKey && (code === 'KeyZ' || code === 'KeyY') && !editing && !t.isContentEditable && !(modalStack.length && inField)) {
       e.preventDefault();
       if (inField && t.blur) t.blur();
       if (code === 'KeyY' || e.shiftKey) redo(); else undo();
