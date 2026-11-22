@@ -91,9 +91,32 @@ select.inp{padding-right:4px}
 .bname{font-weight:800;font-size:15.5px;letter-spacing:-.02em;white-space:nowrap}
 .bname b{font-weight:600;color:var(--text3);margin-left:5px;font-size:13.5px}
 .tdiv{width:1px;height:22px;background:var(--line);flex:none}
-.ptitle{min-width:80px;max-width:340px;width:100%;height:34px;border:1px solid transparent;border-radius:8px;padding:0 9px;font-size:14.5px;font-weight:700;background:transparent;outline:none;text-overflow:ellipsis}
-.ptitle:hover{border-color:var(--line2)}
-.ptitle:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--ring);background:var(--panel)}
+.tswitch{display:flex;align-items:center;min-width:0;max-width:440px;flex:1 1 auto;height:38px;border:1px solid var(--line2);border-radius:10px;background:var(--panel);transition:border-color .12s,box-shadow .12s}
+.tswitch:hover{border-color:var(--text3)}
+.tswitch:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px var(--ring)}
+.ptitle{min-width:60px;width:100%;height:100%;border:0;border-radius:10px 0 0 10px;padding:0 11px;font-size:14.5px;font-weight:700;background:transparent;outline:none;text-overflow:ellipsis}
+.tsw-btn{flex:none;height:100%;display:inline-flex;align-items:center;gap:4px;padding:0 10px 0 9px;border-left:1px solid var(--line);border-radius:0 10px 10px 0;color:var(--text2);font-size:12px;font-weight:800}
+.tsw-btn:hover{background:var(--accent-soft);color:var(--accent)}
+.tsw-btn .i{width:15px;height:15px}
+.tsw-n{min-width:18px;height:18px;padding:0 5px;border-radius:99px;background:var(--panel2);border:1px solid var(--line);display:inline-flex;align-items:center;justify-content:center;font-size:11px}
+.switcher{position:fixed;z-index:75;width:430px;max-width:calc(100vw - 16px);background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-lg);display:none;flex-direction:column;max-height:min(560px,calc(100vh - 80px))}
+.switcher.on{display:flex;animation:pop .12s ease-out}
+.sw-top{padding:10px 10px 6px}
+.sw-top .sbox .inp{width:100%;height:36px;font-size:13.5px}
+.sw-list{overflow-y:auto;padding:4px 6px;flex:1;min-height:60px}
+.sw-i{width:100%;display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:10px;text-align:left;border:1px solid transparent}
+.sw-i:hover,.sw-i.kb{background:var(--panel2);border-color:var(--line)}
+.sw-i.cur{background:var(--accent-soft);border-color:var(--accent)}
+.sw-ic{width:30px;height:30px;border-radius:8px;background:var(--panel2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--text2);flex:none}
+.sw-i.cur .sw-ic{background:var(--accent);border-color:var(--accent);color:#fff}
+.sw-b{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.sw-t{font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sw-s{font-size:12px;color:var(--text3)}
+.sw-s em{font-style:normal;color:var(--accent);font-weight:800}
+.sw-d{font-size:11.5px;color:var(--text3);white-space:nowrap;flex:none}
+.sw-foot{display:flex;align-items:center;gap:6px;padding:10px;border-top:1px solid var(--line)}
+.newtitle{margin-bottom:14px}
+.inp.lg{height:44px;font-size:15px;font-weight:700;padding:0 14px}
 .savestate{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--text3);white-space:nowrap;flex:none}
 .savestate .i{width:13px;height:13px;color:#2f9e44}
 .savestate[data-s="error"]{color:#e03131}.savestate[data-s="error"] .i{color:#e03131}
@@ -606,6 +629,8 @@ table.keys{width:100%;border-collapse:collapse;font-size:12.5px}
 @media (max-width:620px){
   .topbar{gap:6px;padding:0 8px}
   .ptitle,.savestate,.tb-left .tdiv{display:none}
+  .tswitch{flex:none;border:0}
+  .tsw-btn{border-left:0;border-radius:9px;padding:0 6px}
   .tb-left{flex:none}
   .tabs{margin-right:auto}
   .tab{padding:0 9px}
@@ -627,7 +652,10 @@ table.keys{width:100%;border-collapse:collapse;font-size:12.5px}
   <div class="tb-left">
     <div class="brand"><span class="logo"><i data-ic="bowtie"></i></span><span class="bname">BowTie<b>분석기</b></span></div>
     <span class="tdiv"></span>
-    <input id="projTitle" class="ptitle" spellcheck="false" title="보우타이 제목 (클릭해서 수정)" aria-label="보우타이 제목">
+    <div class="tswitch" id="tswitch">
+      <input id="projTitle" class="ptitle" spellcheck="false" placeholder="제목을 입력하세요" title="제목 (클릭해서 바로 수정)" aria-label="보우타이 제목">
+      <button class="tsw-btn" data-cmd="switcher" title="저장된 작업 목록 · 바로 열기 (Ctrl+O)"><i data-ic="folder"></i><span class="tsw-n" id="tswN"></span><i data-ic="chev-d"></i></button>
+    </div>
     <span id="saveState" class="savestate"></span>
   </div>
   <nav class="tabs" id="tabs" aria-label="화면 전환">
@@ -687,6 +715,7 @@ table.keys{width:100%;border-collapse:collapse;font-size:12.5px}
 <div id="modalRoot"></div>
 <div id="ctx" class="ctx" role="menu"></div>
 <div id="suggest" class="suggest"></div>
+<div id="switcher" class="switcher"></div>
 <div id="toasts" class="toasts" aria-live="polite"></div>
 <div id="dropzone" class="dropzone">JSON(백업) 또는 텍스트 파일을 놓으면 불러옵니다</div>
 <input type="file" id="fileIn" accept=".json,.txt,application/json,text/plain" hidden>
@@ -703,7 +732,7 @@ table.keys{width:100%;border-collapse:collapse;font-size:12.5px}
 const TEMPLATES = [
   {
     key: 'blank', icon: 'file-plus', title: '빈 보우타이',
-    desc: '위협 1개, 결과 1개만 있는 빈 화면에서 시작합니다.',
+    desc: '위협 1개·결과 1개(기본 장벽 포함)만 있는 빈 화면에서 시작합니다.',
     text: `위험요인: 위험요인을 입력하세요
 정상사건: 정상 사건(Top Event)을 입력하세요
 
@@ -1297,6 +1326,7 @@ function saveNow(manual) {
   idx.unshift({ id: P.id, title: P.meta.title, updated: P.updated, nT: P.threats.length, nC: P.cons.length, nB: countBarriers() });
   lsSet(LS.index, idx); lsSet(LS.last, P.id);
   setSaveState('saved');
+  if (typeof updateSwitcherCount === 'function') updateSwitcherCount();
   if (manual) toast('저장했습니다. (이 브라우저에 자동 저장되고 있어요)');
 }
 function setSaveState(s) {
@@ -2669,19 +2699,26 @@ function applyOutline(p, text, mode = 'replace') {
 function openNew() {
   openModal({
     title: '새 보우타이 만들기', cls: 'wide',
-    body: `<p class="lead">빈 화면에서 시작하거나, 자주 쓰는 사고 유형 템플릿으로 시작하세요. 지금 작업 중인 보우타이는 자동 저장되어 [프로젝트]에 남아 있습니다.</p>
+    body: `<div class="newtitle"><label class="fl" for="newTitle">제목</label><input id="newTitle" class="inp lg" placeholder="예: ○○공장 LPG 저장소 화재·폭발 (비워 두면 템플릿 이름 사용)" maxlength="80"></div>
+    <p class="lead">제목을 쓰고 아래에서 시작할 형태를 고르세요. 제목만 쓰고 <b>Enter</b>를 누르면 빈 보우타이로 바로 시작합니다. 지금 작업 중인 보우타이는 자동 저장되어 제목 옆 목록에 남아 있습니다.</p>
     <div class="tpl-grid">${TEMPLATES.map((t, i) => {
       const r = parseOutline(t.text); const nb = [...r.threats, ...r.cons].reduce((s, x) => s + x.barriers.length, 0);
       return `<button class="tpl${t.key === 'blank' ? ' blank' : ''}" data-i="${i}"><span class="tpl-ic">${ic(t.icon)}</span><span class="tpl-t">${esc(t.title)}</span><span class="tpl-d">${esc(t.desc)}</span>${t.key !== 'blank' ? `<span class="tpl-c">위협 ${r.threats.length} · 결과 ${r.cons.length} · 장벽 ${nb}</span>` : ''}</button>`;
     }).join('')}</div>
     <p class="note">템플릿은 시작점일 뿐입니다. 사업장 실정에 맞게 위협·장벽·담당을 수정하고, 관련 근거는 현행 법령·기준을 확인해 직접 입력하세요.</p>`,
-    onMount: (el, m) => { el.addEventListener('click', e => { const b = e.target.closest('.tpl'); if (!b) return; m.close(); createFromTemplate(TEMPLATES[+b.dataset.i]); }); }
+    onMount: (el, m) => {
+      const ti = el.querySelector('#newTitle');
+      setTimeout(() => ti.focus(), 40);
+      ti.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.isComposing && e.keyCode !== 229) { e.preventDefault(); m.close(); createFromTemplate(TEMPLATES[0], ti.value); } });
+      el.addEventListener('click', e => { const b = e.target.closest('.tpl'); if (!b) return; const title = ti.value; m.close(); createFromTemplate(TEMPLATES[+b.dataset.i], title); });
+    }
   });
 }
-function createFromTemplate(t) {
+function createFromTemplate(t, title) {
   if (editing) finishEdit(true);
   saveNow();
-  const p = blankProject(t.key === 'blank' ? '새 보우타이' : t.title);
+  title = String(title || '').trim();
+  const p = blankProject(title || (t.key === 'blank' ? '새 보우타이' : t.title));
   applyOutline(p, t.text, 'replace');
   if (t.meta) Object.assign(p.meta, t.meta);
   openProjectObj(p);
@@ -2691,6 +2728,71 @@ function openProjectObj(p) {
   P = p; SEL = null; resetHistory(); buildIndex(); saveNow();
   if (VIEW !== 'diagram') setView('diagram'); else renderAll();
   requestAnimationFrame(() => { drawWires(); fitView(); });
+}
+
+/* ---------- 제목 옆 작업 목록 (바로 열기) ---------- */
+let SW = { open: false, q: '', i: -1 };
+function projectIndex() { return lsGet(LS.index, []).filter(x => localStorage.getItem(LS.proj(x.id)) != null); }
+function updateSwitcherCount() { const n = $('#tswN'); if (n) n.textContent = projectIndex().length; }
+function openSwitcher() {
+  if (SW.open) return closeSwitcher();
+  if (editing) finishEdit(true);
+  saveNow(); closeMenu();
+  SW = { open: true, q: '', i: -1 };
+  const box = $('#switcher'), r = $('#tswitch').getBoundingClientRect();
+  box.style.left = Math.max(8, Math.min(r.left, innerWidth - 440)) + 'px';
+  box.style.top = (r.bottom + 6) + 'px';
+  box.innerHTML = `<div class="sw-top"><div class="sbox">${ic('search')}<input id="swq" class="inp" placeholder="제목으로 찾기" autocomplete="off"></div></div><div class="sw-list" id="swList"></div>
+    <div class="sw-foot"><button class="btn sm primary" data-sw="new">${ic('file-plus')}새 보우타이</button><button class="btn sm" data-sw="copy" title="지금 작업을 복사해 다른 제목으로 저장">${ic('copy')}다른 제목으로 사본 저장</button><span class="sp"></span><button class="btn sm ghost" data-sw="manage">관리</button></div>`;
+  box.classList.add('on');
+  paintSwitcher();
+  setTimeout(() => $('#swq').focus(), 20);
+  const q = $('#swq');
+  q.addEventListener('input', () => { SW.q = q.value; SW.i = -1; paintSwitcher(); });
+  q.addEventListener('keydown', e => {
+    if (e.isComposing || e.keyCode === 229) return;
+    const items = $$('#swList .sw-i');
+    if (e.key === 'ArrowDown') { e.preventDefault(); SW.i = Math.min(items.length - 1, SW.i + 1); paintSel(items); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); SW.i = Math.max(0, SW.i - 1); paintSel(items); }
+    else if (e.key === 'Enter') { e.preventDefault(); const it = items[SW.i >= 0 ? SW.i : 0]; if (it) switchTo(it.dataset.id); }
+    else if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); closeSwitcher(); }
+  });
+  const paintSel = items => { items.forEach((x, i) => x.classList.toggle('kb', i === SW.i)); if (items[SW.i]) items[SW.i].scrollIntoView({ block: 'nearest' }); };
+  box.onclick = e => {
+    const it = e.target.closest('.sw-i'); if (it) return switchTo(it.dataset.id);
+    const a = e.target.closest('[data-sw]'); if (!a) return;
+    closeSwitcher();
+    if (a.dataset.sw === 'new') openNew();
+    if (a.dataset.sw === 'manage') openProjects();
+    if (a.dataset.sw === 'copy') copyAsNew();
+  };
+}
+function paintSwitcher() {
+  const list = $('#swList'); if (!list) return;
+  const q = normName(SW.q);
+  const all = projectIndex();
+  const items = all.filter(x => !q || normName(x.title).includes(q));
+  list.innerHTML = items.length ? items.map(x => `<button class="sw-i${x.id === P.id ? ' cur' : ''}" data-id="${x.id}">
+      <span class="sw-ic">${ic(x.id === P.id ? 'check' : 'bowtie')}</span>
+      <span class="sw-b"><span class="sw-t">${esc(x.title || '제목 없음')}</span><span class="sw-s">${x.id === P.id ? '<em>지금 작업 중</em> · ' : ''}위협 ${x.nT ?? 0} · 결과 ${x.nC ?? 0} · 장벽 ${x.nB ?? 0}</span></span>
+      <span class="sw-d">${fmtTime(x.updated)}</span></button>`).join('')
+    : `<div class="empty" style="padding:18px;text-align:center">${q ? '찾는 제목이 없습니다' : '저장된 작업이 없습니다'}</div>`;
+}
+function closeSwitcher() { SW.open = false; const b = $('#switcher'); if (b) b.classList.remove('on'); }
+function switchTo(id) {
+  closeSwitcher();
+  if (id === P.id) return;
+  openProject(id);
+  toast(`'${P.meta.title}'을(를) 열었습니다`);
+}
+function copyAsNew() {
+  if (editing) finishEdit(true);
+  saveNow();
+  const p = normalizeProject(clone(P));
+  p.id = uid(); p.created = p.updated = Date.now(); p.meta.title = (P.meta.title || '보우타이') + ' (사본)';
+  openProjectObj(p);
+  const t = $('#projTitle'); if (t) { t.focus(); t.select(); }
+  toast('사본을 만들었습니다. 제목을 바로 고쳐 쓰세요');
 }
 
 /* ---------- 프로젝트 목록 ---------- */
@@ -3040,7 +3142,7 @@ function openHelp() {
         ${K('Shift+Enter', '같은 종류 항목을 옆(아래)에 추가')}${K('Del', '삭제 (되돌리기 가능)')}${K('Ctrl+D', '복제')}
         ${K('Ctrl+Z', '실행 취소')}${K('Ctrl+Y', '다시 실행')}${K('← → ↑ ↓', '옆 항목으로 선택 이동')}${K('Alt+화살표', '순서 바꾸기')}
         ${K('T', '위협 추가')}${K('C', '결과 추가')}${K('B', '장벽 추가')}${K('E', '확대요인 추가')}
-        ${K('F', '화면에 맞추기')}${K('Ctrl+휠', '확대/축소')}${K('/', '검색')}${K('Ctrl+S', '저장 확인')}${K('Esc', '선택 해제 / 닫기')}${K('?', '이 도움말')}
+        ${K('F', '화면에 맞추기')}${K('Ctrl+휠', '확대/축소')}${K('/', '검색')}${K('Ctrl+S', '저장 확인')}${K('Ctrl+O', '저장된 작업 목록 열기')}${K('Esc', '선택 해제 / 닫기')}${K('?', '이 도움말')}
         </table>
         <div class="note" style="margin-top:12px">마우스: 빈 곳 드래그 = 화면 이동, 휠 = 상하 이동, 우클릭 = 빠른 메뉴, 노드 드래그 = 순서·위치 변경<br>터치: 한 손가락 = 이동, 두 손가락 = 확대, 길게 누르기 = 빠른 메뉴</div></div></div>`
   });
@@ -3334,7 +3436,7 @@ function toggleInsp() {
   requestAnimationFrame(() => { drawWires(); });
 }
 const CMD = {
-  undo, redo, new: openNew, projects: openProjects, text: openText, share: openShare, help: openHelp,
+  undo, redo, new: openNew, projects: openProjects, switcher: openSwitcher, text: openText, share: openShare, help: openHelp,
   settings: () => openSettings(), exportMenu: btn => openExportMenu(btn), toggleInsp,
   theme: () => { prefs.theme = prefs.theme === 'dark' ? 'light' : 'dark'; savePrefs(); applyTheme(); },
   more: btn => {
@@ -3376,7 +3478,10 @@ function bindTop() {
     const it = e.target.closest('.sg-i'); if (!it || !editing) return;
     pickSuggest(+it.dataset.i); finishEdit(true);
   });
-  document.addEventListener('mousedown', e => { if (!e.target.closest('#ctx')) closeMenu(); });
+  document.addEventListener('mousedown', e => {
+    if (!e.target.closest('#ctx')) closeMenu();
+    if (SW.open && !e.target.closest('#switcher, [data-cmd="switcher"]')) closeSwitcher();
+  });
   window.addEventListener('blur', closeMenu);
   $('#insp-backdrop').addEventListener('click', () => document.body.classList.remove('insp-open'));
 }
@@ -3396,6 +3501,8 @@ function bindGlobalKeys() {
       return;
     }
     if (e.key === 'Escape' && $('#ctx').classList.contains('on')) { closeMenu(); return; }
+    if (e.key === 'Escape' && SW.open) { closeSwitcher(); return; }
+    if (mod && code === 'KeyO') { e.preventDefault(); openSwitcher(); return; }
     if (mod && code === 'KeyS') { e.preventDefault(); if (editing) finishEdit(true); saveNow(true); return; }
     if (editing) return;
     if (inField) { if (e.key === 'Escape' && t.blur) t.blur(); return; }
